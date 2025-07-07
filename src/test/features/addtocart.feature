@@ -14,5 +14,4 @@ Scenario: Add item to cart
 Examples:
     | itemName       |
     | "Rot & Ruin"   |
-    # | "Roomies"      |
  

@@ -20,10 +20,9 @@ When('user clicks on the login button', async function () {
          });
 Then('Login should be successful', async function () {
   const userLabel = pageFixture.page!.locator("//span[contains(text(),'yuvaraj2004')]");
-  await expect(userLabel).toBeVisible({ timeout: 5000 }); // waits until visible
-  await expect(userLabel).toHaveText(/yuvaraj2004/, { timeout: 5000 }); // optional, checks text match
+  await expect(userLabel).toBeVisible({ timeout: 5000 });
+  await expect(userLabel).toHaveText(/yuvaraj2004/, { timeout: 5000 }); 
 });
  Then('Login should Fail', async function () {
-          //  await expect(page.locator('text=Login failed')).toBeVisible();
 
          });
