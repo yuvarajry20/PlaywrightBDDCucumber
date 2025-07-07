@@ -1,7 +1,18 @@
-const reporter = require('multiple-cucumber-html-reporter');
+const report = require('multiple-cucumber-html-reporter');
 
-reporter.generate({
+report.generate({
+  jsonDir: './reports/json', // only contains Cucumber .json
+  reportPath: './report',
   reportName: 'Playwright BDD Report',
-  jsonDir: './',
-  reportPath: 'report',
+  metadata: {
+    browser: {
+      name: 'chrome',
+      version: 'latest',
+    },
+    device: 'Local test machine',
+    platform: {
+      name: 'Windows',
+      version: '10',
+    },
+  },
 });

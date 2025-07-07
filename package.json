@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "cucumber-js --require-module ts-node/register --require src/hooks/**/*.ts --require src/test/steps/**/*.ts --format json:cucumber-report.json",
+  "test": "cucumber-js --require-module ts-node/register --require src/hooks/**/*.ts --require src/test/steps/**/*.ts --format json:./reports/json/cucumber-report.json",
   "report": "node reporter.js"
 },
   "keywords": [],
