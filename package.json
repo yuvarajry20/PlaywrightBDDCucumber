@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js --require-module ts-node/register --require src/hooks/**/*.ts --require src/test/steps/**/*.ts",
-    "report": "npx multiple-cucumber-html-reporter --reportName='Playwright BDD Report' --jsonDir=./ --reportPath=report"
-  },
+  "test": "cucumber-js --require-module ts-node/register --require src/hooks/**/*.ts --require src/test/steps/**/*.ts --format json:cucumber-report.json",
+  "report": "npx multiple-cucumber-html-reporter --reportName='Playwright BDD Report' --jsonDir=./ --reportPath=report"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
