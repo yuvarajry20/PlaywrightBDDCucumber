@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
-  "clean:report": "npx rimraf test-results reports",
-  "testonly": "npx cucumber-js --profile default || exit 0",
-  "test": "npm run clean:report && npm run testonly",
-  "posttest": "npx ts-node src/helper/report.ts",
-  "test:failed": "npx cucumber-js --profile rerun || exit 0"
-},
+  "scripts": {
+    "clean:report": "npx rimraf test-results reports",
+    "testonly": "npx cucumber-js --profile default || exit 0",
+    "test": "npm run clean:report && npm run testonly",
+    "posttest": "npx ts-node src/helper/report/report.ts",
+    "test:failed": "npx cucumber-js --profile rerun || exit 0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "@playwright/test": "^1.53.2",
     "@types/node": "^24.0.10",
     "cross-env": "^7.0.3",
+    "dotenv": "^17.1.0",
     "multiple-cucumber-html-reporter": "^3.9.3",
     "rmraf": "^1.0.3",
     "ts-node": "^10.9.2"

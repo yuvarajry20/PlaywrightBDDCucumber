@@ -4,8 +4,12 @@ import { pageFixture } from '../../hooks/pagefixture';
 
 
 Given('user navigates to the application', async function () {
-           await pageFixture.page?.goto('https://bookcart.azurewebsites.net/');
-         });
+  const baseUrl = process.env.BASEURL;
+  if (!baseUrl) {
+    throw new Error('BASEURL is not defined in the environment variables.');
+  }
+  await pageFixture.page?.goto(baseUrl);
+});
 Given('user click on the login link', async function () {
            await pageFixture.page?.locator('//span[contains(text()," Login ")]').click();
          });
