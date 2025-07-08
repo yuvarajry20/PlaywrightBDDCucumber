@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
+ "scripts": {
   "clean:report": "npx rimraf test-results reports",
-  "testonly": "npx cucumber-js || exit 0",
+  "testonly": "npx cucumber-js --profile default || exit 0",
   "test": "npm run clean:report && npm run testonly",
-  "posttest": "npx ts-node src/helper/report.ts"
+  "posttest": "npx ts-node src/helper/report.ts",
+  "test:failed": "npx cucumber-js --profile rerun || exit 0"
 },
   "keywords": [],
   "author": "",

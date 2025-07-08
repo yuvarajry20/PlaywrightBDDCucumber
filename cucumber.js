@@ -1,4 +1,3 @@
-// cucumber.js
 module.exports = {
   default: {
     formatOptions: {
@@ -12,10 +11,26 @@ module.exports = {
     ],
     format: [
       "progress-bar",
-      "html:test-results/cucumber-report.html",
-      "json:test-results/cucumber-report.json"
+      "json:test-results/report.json",
+      "rerun:@rerun.txt"
     ],
     requireModule: ["ts-node/register"],
-    parallel: 2,
+    parallel: 2
+  },
+  rerun: {
+    formatOptions: {
+      snippetInterface: "async-await"
+    },
+    dryRun: false,
+    paths: ["@rerun.txt"], // note: keep it like this
+    require: [
+      "src/test/steps/**/*.ts",
+      "src/hooks/**/*.ts"
+    ],
+    format: [
+      "progress-bar",
+      "json:test-results/rerun-report.json"
+    ],
+    requireModule: ["ts-node/register"],
   }
-};
+}
