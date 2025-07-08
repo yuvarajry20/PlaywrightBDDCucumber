@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "clean:report": "rimraf test-results reports",
+  "clean:report": "npx rimraf test-results reports",
   "testonly": "npx cucumber-js || exit 0",
   "test": "npm run clean:report && npm run testonly",
   "posttest": "npx ts-node src/helper/report.ts"
