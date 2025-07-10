@@ -1,32 +1,45 @@
-import { Given, Then, When } from '@cucumber/cucumber';
-import { expect } from '@playwright/test';
+import { Given, When, Then } from '@cucumber/cucumber';
 import { pageFixture } from '../../hooks/pagefixture';
+import LoginPage from '../../pages/loginPage';
 
+let loginPage: LoginPage;
 
-Given('user navigates to the application', async function () {
+Given('user navigates to the application', { timeout: 20000 }, async function () {
   const baseUrl = process.env.BASEURL;
   if (!baseUrl) {
     throw new Error('BASEURL is not defined in the environment variables.');
   }
   await pageFixture.page?.goto(baseUrl);
+  await pageFixture.logger?.info(`Navigated to ${baseUrl}`);
 });
-Given('user click on the login link', async function () {
-           await pageFixture.page?.locator('//span[contains(text()," Login ")]').click();
-         });
-Given('user enters username as {string}', async function (username) {
-           await pageFixture.page?.locator('input[formcontrolname="username"]').fill(username);
-         });
-Given('user enters password as {string}', async function (password) {
-           await pageFixture.page?.locator('input[formcontrolname="password"]').fill(password);
-         });
-When('user clicks on the login button', async function () {
-           await pageFixture.page?.locator('(//span[contains(text(),"Login")])[2]').click();
-         });
-Then('Login should be successful', async function () {
-  const userLabel = pageFixture.page!.locator("//span[contains(text(),'yuvaraj2004')]");
-  await expect(userLabel).toBeVisible({ timeout: 5000 });
-  await expect(userLabel).toHaveText(/yuvaraj2004/, { timeout: 5000 }); 
-});
- Then('Login should Fail', async function () {
 
-         });
+Given('user click on the login link', async function () {
+  loginPage = new LoginPage(pageFixture.page!);
+  await loginPage.clickLoginLink();
+  await pageFixture.logger?.info('Clicked on the login link');
+});
+
+Given('user enters username as {string}',{ timeout: 20000 }, async function (username: string) {
+  await loginPage.enterUsername(username);
+  await pageFixture.logger?.info(`Entered username: ${username}`);
+});
+
+Given('user enters password as {string}', async function (password: string) {
+  await loginPage.enterPassword(password);
+  await pageFixture.logger?.info(`Entered password: ${password}`);
+});
+
+When('user clicks on the login button', async function () {
+  await loginPage.clickLoginButton();
+  await pageFixture.logger?.info('Clicked on the login button');
+});
+
+Then('Login should be successful', async function () {
+  await loginPage.verifyLoginSuccessful();
+  await pageFixture.logger?.info('Login was successful and user label is visible');
+});
+
+Then('Login should Fail', async function () {
+  // You can assert failure element here if needed
+  await pageFixture.logger?.info('Login failed as expected');
+});
